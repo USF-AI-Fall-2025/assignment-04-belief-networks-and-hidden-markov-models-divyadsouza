@@ -163,12 +163,18 @@ def correct_text(text, emission_probs, transition_probs):
     return " ".join(fixed_words)
 
 
-if __name__ == "__main__":
-    aspell_path = "aspell.txt"
+def get_spellings(file):
+    aspell_path = file
 
     with open(aspell_path, "r", encoding="utf-8") as f:
         lines = f.readlines()
 
+    return lines
+
+
+if __name__ == "__main__":
+
+    lines = get_spellings("aspell.txt")
     # Compute emission and transition probabilities using the same data
     emissions = compute_emission_probabilities(lines)
     transitions = compute_transition_probabilities(lines)
